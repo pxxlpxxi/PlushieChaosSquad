@@ -28,11 +28,11 @@ namespace PlushieChaosSquad.Libraries
                     "Dramatic Tantrum",
                     "The plushie throws itself onto the floor and has an unnecessarily dramatic tantrum."),
                 new ChaoticFailureMove(
-                    "Silent Judgment",
+                    "Judgmental Stare",
                     "The plushie sits completely still and silently judges the house for a few moments.", 
                     5),
                 new ChaoticFailureMove(
-                    "Plan B",
+                    "Desperate Plan B",
                     "The original chaos plan has already been ruined, so the plushie improvises something considerably more insidious.", 
                     10),
                 new ChaoticFailureMove(
@@ -45,9 +45,9 @@ namespace PlushieChaosSquad.Libraries
                     5),
                 new ChaoticFailureMove(
                     "Villainous Sulk",
-                    "The plushie blasts 'In the Hall of the Mountain King' at an absurd volume from the stereo in the living room, the retreats into a corner, and sulks while plotting its next move."),
+                    "The plushie blasts 'In the Hall of the Mountain King' at an absurd volume from the stereo in the living room, then retreats into a corner, and sulks while plotting its next move."),
                 new ChaoticFailureMove(
-                    "Petty Revenge",
+                    "Spiteful Revenge",
                     "The plushie abandons the original plan and destroys something completely unrelated out of spite.",
                     10),
                 new ChaoticFailureMove(
