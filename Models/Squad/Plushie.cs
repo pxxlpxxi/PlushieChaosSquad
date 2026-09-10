@@ -1,4 +1,5 @@
-﻿using PlushieChaosSquad.Libraries;
+﻿using PlushieChaosSquad.Helpers;
+using PlushieChaosSquad.Libraries;
 using PlushieChaosSquad.Models.Incidents;
 using PlushieChaosSquad.Models.Moves;
 
@@ -103,18 +104,20 @@ namespace PlushieChaosSquad.Models.Squad
         /// </summary>
         /// <param name="amount">The amount of Chaos Energy to spend.</param>
         /// <returns>A description of any chaos damage suffered, or an empty string if no damage occurred.</returns>
-        internal string UseEnergy(int amount)
+        internal string UseEnergy(int amount, string moveName)
         {
             ChaosEnergy -= amount;
             if (ChaosEnergy <= 0)
             {
-                return SufferChaosDamage();
+                return SufferChaosDamage(moveName);
             }
             return string.Empty;
         }
-        private string SufferChaosDamage()
+        private string SufferChaosDamage(string causeOfDamage)
         {
-            return $"{Name}" + PlushieDamageLibrary.GetRandomDamage();
+            UIReport.SOS();
+            UIReport.WriteObituary(this, causeOfDamage);
+            return $"{Name}" + PlushieDamageLibrary.GetRandomDamage() + $"\n\n\n";
         }
     }
 }
