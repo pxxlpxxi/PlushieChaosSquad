@@ -1,24 +1,21 @@
-﻿using PlushieChaosSquad.Interfaces;
+﻿using PlushieChaosSquad.Helpers;
+using PlushieChaosSquad.Interfaces;
 using PlushieChaosSquad.Libraries;
 using PlushieChaosSquad.Models.Incidents;
 using PlushieChaosSquad.Models.Moves;
 using PlushieChaosSquad.Models.Squad;
+using System.Diagnostics;
 
 namespace PlushieChaosSquad.Services
 {
-    /// <summary>
-    ///
-    /// </summary>
     internal class DispatchCenter
     {
+        private readonly object _dispatchLock = new object();
+
+
         private readonly List<Plushie> _plushies = PlushieLibrary.GetAllPlushies();
-        //private readonly List<IDispatchStrategy> _strategies = new List<IDispatchStrategy>();
         private readonly List<ChaosIncident> _incidents = new List<ChaosIncident>();
 
-        /// <summary>
-        /// Creates a new dispatch center using the specified dispatch strategy.
-        /// </summary>
-        //internal DispatchCenter(IDispatchStrategy strategy) => _strategies.Add(strategy);
 
         /// <summary>
         /// Registers a plushie with the dispatch center.
@@ -29,16 +26,6 @@ namespace PlushieChaosSquad.Services
             if (plushie == null) return;
             _plushies.Add(plushie);
         }
-
-        ///// <summary>
-        ///// Registers a strategy with the dispatch center.
-        ///// </summary>
-        ///// <param name="strategy">The dispatch center strategy to register</param>
-        //internal void RegisterStrategy(IDispatchStrategy strategy)
-        //{
-        //    if (strategy == null) return;
-        //    _strategies.Add(strategy);
-        //}
 
 
 
@@ -52,22 +39,25 @@ namespace PlushieChaosSquad.Services
             _incidents.Add(incident);
         }
 
-        /// <summary>
-        /// Dispatches a plushie to handle a chaos incident using the specified strategy.
-        /// </summary>
-        /// <param name="incident">The chaos incident that needs to be handled.</param>
-        /// <param name="strategy">The strategy used to select a plushie.</param>
-        /// <returns>The plushie selevted to handle the incident.</returns>
         internal Plushie DispatchPlushie(
             ChaosIncident incident,
             IDispatchStrategy strategy)
         {
-            List<Plushie> availablePlushies = _plushies
-                .Where(plushie => plushie.IsAvailable)
-                .ToList();
+            lock (_dispatchLock)
+            {
+                List<Plushie> availablePlushies = _plushies
+                    .Where(plushie => plushie.IsAvailable)
+                    .ToList();
 
-            return strategy.SelectPlushie(incident, availablePlushies);
-            /*return _plushies[0];*/ }
+                Plushie plushie = strategy.SelectPlushie(
+                    incident,
+                    availablePlushies);
+
+                plushie.MarkAsBusy();
+
+                return plushie;
+            }
+        }
 
 
         /// <summary>
@@ -82,62 +72,195 @@ namespace PlushieChaosSquad.Services
             action(incident);
         }
 
-        /// <summary>
-        /// Handles a complete chaos incident from dispatch to resolution.
-        /// </summary>
-        /// <param name="incident">The chaos incident to handle.</param>
-        /// <param name="strategy">The strategy used to select a plushie.</param>
-        /// <param name="onResolved">
-        /// The callback to execute when the incident has been resolved.
-        /// </param>
-        /// <returns>A description of what happened during the incident.</returns>
         internal string HandleIncident(
-            ChaosIncident incident,
+        ChaosIncident incident,
+        IDispatchStrategy strategy,
+        Action<ChaosIncident> onResolved)
+        {
+            Plushie plushie = DispatchPlushie(
+                incident,
+                strategy);
+
+            string report = HandleChaosByLevel(
+                plushie,
+                incident.ChaosLevel,
+                out bool handled);
+
+            if (handled)
+            {
+                ResolveIncident(
+                    incident,
+                    onResolved);
+            }
+
+            plushie.MarkAsAvailable();
+
+            return report;
+        }
+
+        internal async Task<List<string>> HandleIncidentsAsync(
             IDispatchStrategy strategy,
             Action<ChaosIncident> onResolved)
         {
-            Plushie plushie = DispatchPlushie(incident, strategy);
-            
+            List<Task<string>> tasks = _incidents
+                .Where(incident => !incident.IsResolved)
+                .Select(incident =>
+                    Task.Run(() =>
+                        HandleIncident(
+                            incident,
+                            strategy,
+                            onResolved)))
+                .ToList();
+
+            return (await Task.WhenAll(tasks)).ToList();
+        }
+
+        private string HandleChaosByLevel(
+
+            Plushie plushie,
+            ChaosLevel chaosLevel,
+            out bool handled)
+        {
+            return chaosLevel switch
+            {
+                ChaosLevel.Low => HandleLowIncident(plushie, out handled),
+                ChaosLevel.Medium => HandleMediumIncident(plushie, out handled),
+                ChaosLevel.High => HandleHighIncident(plushie, out handled),
+                _ => throw new UnreachableException()
+            };
+        }
+        private string HandleLowIncident(
+            Plushie plushie,
+            out bool handled)
+        {
+            ChaosMove move = plushie.MakeChaos();
+
+            string availabilityReport =
+                CheckAndHandleAvailability(plushie, move, out handled);
+
+            if (!handled)
+            {
+                return availabilityReport;
+            }
+
+            string report =
+                $"{plushie.Name} {move.Success}\n";
+
+            report += plushie.UseEnergy(move.EnergyCost, move.Name);
+
+            return report;
+        }
+
+        private string HandleMediumIncident(
+            Plushie plushie,
+            out bool handled)
+        {
+            ChaosSession session = new ChaosSession();
+            string report = "";
+
+            handled = true;
+
+            for (int i = 0; i < 2; i++)
+            {
+                ChaosMove move = plushie.MakeChaos();
+
+                string availabilityReport =
+                    CheckAndHandleAvailability(plushie, move, out bool available);
+
+                if (!available)
+                {
+                    return availabilityReport;
+                }
+
+                report += ExecuteSessionMove(
+                    plushie,
+                    move,
+                    session);
+            }
+
+            return report;
+        }
+
+        private string HandleHighIncident(
+            Plushie plushie,
+            out bool handled)
+        {
+            handled = true;
+
+            string report =
+                $"{plushie.PerformSignatureChaos()}\n";
+
+            ChaosMove move = plushie.MakeChaos();
+
+            string availabilityReport =
+                CheckAndHandleAvailability(plushie, move, out handled);
+
+            if (!handled)
+            {
+                return availabilityReport;
+            }
+
+            report +=
+                $"{plushie.Name} {move.Success}\n";
+
+            report += plushie.UseEnergy(move.EnergyCost, move.Name);
+
+            return report;
+        }
+
+        private string CheckAndHandleAvailability(
+            Plushie plushie,
+            ChaosMove move,
+            out bool handled)
+        {
             (bool isAvailable, string message) =
                 plushie.CheckAvailability();
 
             if (!isAvailable)
             {
-                return message;
+                handled = false;
+
+                return
+                    $"{plushie.Name} was supposed to {move.Intent} But {message}\n";
             }
 
-            ChaosMove move = plushie.MakeChaos();
-
-            string result = move.Execute();
-
-            string damage = plushie.UseEnergy(move.EnergyCost);
-
-            ResolveIncident(incident, onResolved);
-
-            return $"{message}\n{plushie.Name} {result}{damage}";
+            handled = true;
+            return "";
         }
 
-        /// <summary>
-        /// Commands all available plushies to unleash chaos simultaneously.
-        /// </summary>
-        //internal void WreakHavoc()
-        //{
-        //    foreach (Plushie plushie in _plushies)
-        //    {
-        //        while (plushie.ChaosEnergy > 0)
-        //        {
-        //            ChaosMove move = plushie.MakeChaos();
-        //            string result = move.Execute();
-        //            string damage = plushie.UseEnergy(move.EnergyCost);
-        //        }
-        //    }
-        //}
+        private string ExecuteSessionMove(
+            Plushie plushie,
+            ChaosMove move,
+            ChaosSession session)
+        {
+            if (!session.HasBeenUsed(move))
+            {
+                session.RegisterMove(move);
 
-        /// <summary>
-        /// Commands all available plushies to unleash chaos during one
-        /// shared chaos session.
-        /// </summary>
-        internal void WreakHavoc()
+                string report =
+                    $"{plushie.Name} {move.Success}\n";
+
+                report += plushie.UseEnergy(move.EnergyCost, move.Name);
+
+                return report;
+            }
+
+            string failureReport =
+                $"{plushie.Name} was supposed to {move.Intent}, " +
+                $"{move.Failure}\n";
+
+            ChaoticFailureMove failureMove =
+                ChaoticFailureMoveLibrary.GetRandomFailureMove();
+
+            failureReport +=
+                $"{plushie.Name} {failureMove.Execute()}\n";
+
+            failureReport +=
+                plushie.UseEnergy(failureMove.EnergyCost, failureMove.Name);
+
+            return failureReport;
+        }
+        internal async Task WreakHavoc()
         {
             List<Plushie> availablePlushies = _plushies
                 .Where(plushie => plushie.IsAvailable)
@@ -145,16 +268,34 @@ namespace PlushieChaosSquad.Services
 
             ChaosSession session = new ChaosSession();
 
-            foreach (Plushie plushie in availablePlushies)
+            UIHelpers.WriteBlue("WREAK HAVOC");
+
+            bool stillHasEnergy = true;
+
+            while (stillHasEnergy)
             {
-                while (plushie.ChaosEnergy > 0)
+                stillHasEnergy = false;
+                string causeofExhaustion = "";
+
+                foreach (Plushie plushie in availablePlushies)
                 {
+                    if (plushie.ChaosEnergy <= 0)
+                    {
+                        continue;
+                    }
+
+                    stillHasEnergy = true;
+
                     ChaosMove move = plushie.MakeChaos();
+
+                    string result;
 
                     if (!session.HasBeenUsed(move))
                     {
-                        string result = move.Execute();
-                        string damage = plushie.UseEnergy(move.EnergyCost);
+                        result =
+                            $"{plushie.Name} {move.Execute()}\n" +
+                            plushie.UseEnergy(move.EnergyCost, causeofExhaustion);
+                        causeofExhaustion = move.Name;
 
                         session.RegisterMove(move);
                     }
@@ -162,17 +303,53 @@ namespace PlushieChaosSquad.Services
                     {
                         ChaoticFailureMove failureMove =
                             ChaoticFailureMoveLibrary.GetRandomFailureMove();
+                        causeofExhaustion = failureMove.Name;
 
-                        string result =
-                            $"{plushie.Name} set out to {move.Intent}, " +
-                            $"{move.Failure}";
+                        result =
+                            $"{plushie.Name} {DeclareIntent()} " +
+                            $"{move.Intent.TrimEnd('.')}. {DeclareObjection()} " +
+                            $"{move.Failure}\n" +
+                            $"{failureMove.Execute()}\n" +
+                            plushie.UseEnergy(failureMove.EnergyCost, causeofExhaustion);
 
-                        string failureResult = failureMove.Execute();
-                        string damage =
-                            plushie.UseEnergy(failureMove.EnergyCost);
                     }
+
+                    Console.WriteLine(result.Trim());
+                    Console.WriteLine();
+
+                    await Task.Delay(400);
                 }
             }
+
+
         }
+        private readonly Random random = new Random();
+        private string DeclareObjection()
+        {
+            return objections[random.Next(objections.Length)];
+        }
+        private string[] objections = [
+            "However,",
+            "But",
+            "Heartbreakingly,",
+            "Unfortunately,",
+            "Regrettably,",
+            "Sadly,",
+            "Allegedly,",
+            "Seemingly,"];
+        private string DeclareIntent()
+        {
+            return preIntent[random.Next(preIntent.Length)];
+
+        }
+        private string[] preIntent = [
+            "set out to",
+        "was going to",
+        "wanted to",
+        "planned to",
+        "tried to",
+        "intended to",
+        "was supposed to",
+        "attempted to"];
     }
 }
