@@ -1,4 +1,5 @@
 ﻿using PlushieChaosSquad.Libraries;
+using PlushieChaosSquad.Models.Incidents;
 using PlushieChaosSquad.Models.Moves;
 
 namespace PlushieChaosSquad.Models.Squad
@@ -37,23 +38,7 @@ namespace PlushieChaosSquad.Models.Squad
 
             IsAvailable = true;
         }
-        /// <summary>
-        /// Performs a randomly selected basic chaos move available to the plushie.
-        /// </summary>
-        /// <returns>A description of the chaos caused.</returns>
-        internal ChaosMove MakeChaos()
-        {
-            List<ChaosMove> availableMoves = new List<ChaosMove>();
 
-            foreach (SkillSet skill in ChaosSkills)
-            {
-                availableMoves.AddRange(ChaosMoveLibrary.GetMovesForSkill(skill));
-            }
-
-            Random random = new Random();
-
-            return availableMoves[random.Next(availableMoves.Count)];
-        }
 
         /// <summary>
         /// Performs the plushie's signature chaos move.
@@ -94,7 +79,53 @@ namespace PlushieChaosSquad.Models.Squad
 
             return $"{Name} has rested and its Chaos Energy is back to {MaxChaosEnergy}.";
         }
-        internal abstract (bool, string) CheckAvailability();
+        internal abstract (bool IsAvailable, string Message) CheckAvailability();
+
+        /// <summary>
+        /// Selects a random basic chaos move from the plushie's available skills.
+        /// </summary>
+        /// <returns>A randomly selected chaos move available to the plushie.</returns>
+        internal ChaosMove MakeChaos()
+        {
+            return ChaosMoveLibrary.GetRandomChaosMove(ChaosSkills.ToList());
+        }
+
+        /// <summary>
+        /// Spends the specified amount of Chaos Energy.
+        /// If the plushie's Chaos Energy reaches zero or below, it suffers chaos damage.
+        /// </summary>
+        /// <param name="amount">The amount of Chaos Energy to spend.</param>
+        /// <returns>A description of any chaos damage suffered, or an empty string if no damage occurred.</returns>
+        internal string UseEnergy(int amount)
+        {
+            ChaosEnergy -= amount;
+            if (ChaosEnergy <= 0)
+            {
+                return SufferChaosDamage();
+            }
+            return string.Empty;
+        }
+        private string SufferChaosDamage()
+        {
+            return $"{Name}" + PlushieDamageLibrary.GetRandomDamage();
+        }
     }
 }
 
+///// <summary>
+///// Performs a randomly selected basic chaos move available to the plushie.
+///// </summary>
+///// <returns>A description of the chaos caused.</returns>
+//internal ChaosMove MakeChaos()
+//{
+//    List<ChaosMove> availableMoves = new List<ChaosMove>();
+
+//    foreach (SkillSet skill in ChaosSkills)
+//    {
+//        availableMoves.AddRange(ChaosMoveLibrary.GetMovesForSkill(skill));
+//    }
+
+//    Random random = new Random();
+
+//    return availableMoves[random.Next(availableMoves.Count)];
+//}
