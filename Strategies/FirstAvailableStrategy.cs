@@ -22,7 +22,7 @@ namespace PlushieChaosSquad.Strategies
                 plushies,
                 plushie => plushie.IsAvailable);
 
-            if (plushies == null) throw new NoSuitablePlushieException();
+            if (plushie == null) throw new NoSuitablePlushieException();
 
             return plushie;
         }
