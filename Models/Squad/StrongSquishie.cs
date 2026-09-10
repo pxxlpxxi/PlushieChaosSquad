@@ -26,7 +26,7 @@ namespace PlushieChaosSquad.Models.Squad
         /// <summary>
         /// Checks whether the strong squishie is available for chaos.
         /// </summary>
-        /// <returns>A description of the strong squishie's current availability.</returns>
+        /// <returns>A tuple containing the availability status and a description of the strong squishie's current availability.</returns>
         internal override (bool,string) CheckAvailability()
         {
             string unavailable = "";

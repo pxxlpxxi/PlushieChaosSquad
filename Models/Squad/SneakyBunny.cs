@@ -17,7 +17,10 @@ namespace PlushieChaosSquad.Models.Squad
                 chaosSkills.Add(SkillSet.Sneaky);
             }
         }
-
+        /// <summary>
+        /// Checks whether the sneaky bunny is available for chaos.
+        /// </summary>
+        /// <returns>A tuple containing the availability status and a description of the sneaky bunny's current availability.</returns>
         internal override (bool, string) CheckAvailability()
         {
             string unavailable = $"{Name} has disappeared. The sneaky bunny is probably hiding somewhere in the house.";
