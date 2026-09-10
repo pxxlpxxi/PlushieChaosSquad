@@ -79,6 +79,13 @@ namespace PlushieChaosSquad.Models.Squad
 
             return $"{Name} has rested and its Chaos Energy is back to {MaxChaosEnergy}.";
         }
+
+        /// <summary>
+        /// Checks whether the plushie is currently available for assignment.
+        /// </summary>
+        /// <returns>
+        /// A tuple containing the plushie's availability status and a message describing its current state.
+        /// </returns>
         internal abstract (bool IsAvailable, string Message) CheckAvailability();
 
         /// <summary>
