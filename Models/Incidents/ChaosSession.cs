@@ -9,8 +9,8 @@ namespace PlushieChaosSquad.Models.Incidents
     /// </summary>
     internal class ChaosSession
     {
-        private readonly HashSet<ChaosMove> usedChaosMoves = new HashSet<ChaosMove>();
-        private readonly HashSet<Plushie> usedSignatures = new HashSet<Plushie>();
+        private readonly HashSet<ChaosMove> _usedChaosMoves = new HashSet<ChaosMove>();
+        private readonly HashSet<Plushie> _usedSignatures = new HashSet<Plushie>();
 
         /// <summary>
         /// Creates a new chaos session.
@@ -18,19 +18,15 @@ namespace PlushieChaosSquad.Models.Incidents
         internal ChaosSession()
         {
         }
+
         /// <summary>
         /// Checks whether a chaos move has already been used during this session.
         /// </summary>
         /// <param name="move">The chaos move to check.</param>
-        /// <returns>True if the move has already been used; otherwise false.</returns>
-        /// <summary>
-        /// Checks whether a basic chaos move has already been used during this session.
-        /// </summary>
-        /// <param name="move">The chaos move to check.</param>
-        /// <returns>True if the move has already been used; otherwise false.</returns>
+        /// <returns>True if the move has already been used; otherwise false.</returns>       
         internal bool HasBeenUsed(ChaosMove move)
         {
-            return usedChaosMoves.Contains(move);
+            return _usedChaosMoves.Contains(move);
         }
         /// <summary>
         /// Registers a basic chaos move as used during this session.
@@ -38,7 +34,7 @@ namespace PlushieChaosSquad.Models.Incidents
         /// <param name="move">The chaos move to register.</param>
         internal void RegisterMove(ChaosMove move)
         {
-            usedChaosMoves.Add(move);
+            _usedChaosMoves.Add(move);
         }
         /// <summary>
         /// Checks whether a plushie's signature chaos has already been used during this session.
@@ -47,7 +43,7 @@ namespace PlushieChaosSquad.Models.Incidents
         /// <returns>True if the plushie's signature has already been used; otherwise false.</returns>
         internal bool HasUsedSignature(Plushie plushie)
         {
-            return usedSignatures.Contains(plushie);
+            return _usedSignatures.Contains(plushie);
         }
 
         /// <summary>
@@ -56,7 +52,7 @@ namespace PlushieChaosSquad.Models.Incidents
         /// <param name="plushie">The plushie whose signature has been used.</param>
         internal void RegisterSignature(Plushie plushie)
         {
-            usedSignatures.Add(plushie);
+            _usedSignatures.Add(plushie);
         }
 
     }
