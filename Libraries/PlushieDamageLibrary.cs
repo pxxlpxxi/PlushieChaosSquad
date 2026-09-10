@@ -15,7 +15,7 @@
             "'s right leg comes loose and the plushie decides that walking is now optional.",
             "'s head tilts permanently to one side for reasons nobody can explain.",
             "'s ear comes loose and flops sadly against its head.",
-            "'s tail falls off and is immediately forgotten.",
+            "'s tail falls off and is immediately forgotten while the plushie loses balance and hits its head so hard an eye pops off and rolls away.",
             "'s nose pops off and rolls underneath the nearest piece of furniture.",
             "'s stuffing shifts around inside, giving it a distinctly uneven appearance.",
             "'s left arm comes loose but remains attached by one incredibly determined thread.",
