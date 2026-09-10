@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlushieChaosSquad.Models.Moves
+﻿namespace PlushieChaosSquad.Models.Moves
 {
     /// <summary>
     /// Represents a basic chaos move that a plushie can perform.
