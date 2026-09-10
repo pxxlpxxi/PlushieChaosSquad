@@ -7,6 +7,7 @@ namespace PlushieChaosSquad.Libraries
     /// </summary>
     internal class ChaosMoveLibrary
     {
+        private static Random random = new Random();
         private static readonly List<ChaosMove> chaosMoves = new List<ChaosMove>
             {
             new ChaosMove(
@@ -220,6 +221,10 @@ namespace PlushieChaosSquad.Libraries
             return chaosMoves
                 .Where(move => move.SkillSet == skill)
                 .ToList();
+        }
+        internal static ChaosMove GetRandomChaosMove(List<SkillSet> skills)
+        {
+            return chaosMoves[random.Next(chaosMoves.Count)];
         }
     }
 }
