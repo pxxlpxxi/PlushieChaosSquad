@@ -9,11 +9,16 @@ namespace PlushieChaosSquad.Models.Squad
 {
     internal class ChaosTeddy : Plushie, IClimbable, ISuperStrong
     {
-        internal ChaosTeddy(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100)
-        : base(name, signatureChaos, chaosSkills)
+        private readonly int _strength;
+
+        int ISuperStrong.Strength => _strength;
+
+        internal ChaosTeddy(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100, int strength= 50)
+        : base(name, signatureChaos, chaosSkills, maxChaosEnergy)
         {
             if (!chaosSkills.Contains(SkillSet.Sneaky)) chaosSkills.Add(SkillSet.Sneaky);
             if (!chaosSkills.Contains(SkillSet.FurnitureFury)) chaosSkills.Add(SkillSet.FurnitureFury);
+            _strength = strength;
         }
         /// <summary>
         /// Allows the chaos teddy to climb.

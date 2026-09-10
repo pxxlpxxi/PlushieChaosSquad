@@ -8,14 +8,18 @@ namespace PlushieChaosSquad.Models.Squad
 {
     internal class StrongSquishie : Plushie, ISuperStrong
     {
+        private readonly int _strength;
 
-        internal StrongSquishie(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100)
+        int ISuperStrong.Strength => _strength;
+
+        internal StrongSquishie(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100, int strength=70)
             : base(name, signatureChaos, chaosSkills, maxChaosEnergy)
         {
             if (!chaosSkills.Contains(SkillSet.FurnitureFury))
             {
                 chaosSkills.Add(SkillSet.FurnitureFury);
             }
+            _strength = strength;
         }
         /// <summary>
         /// Allows the plushie to use its super strength.
