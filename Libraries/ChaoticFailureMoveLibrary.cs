@@ -9,8 +9,11 @@ namespace PlushieChaosSquad.Libraries
     /// <summary>
     /// Provides access to the chaotic failure moves available to the Plushie Chaos Squad.
     /// </summary>
-    internal class ChaoticFailureMoveLibrary
+    internal static class ChaoticFailureMoveLibrary
     {
+        private static Random random = new Random();
+
+        
         private static readonly List<ChaoticFailureMove> failureMoves =
             new List<ChaoticFailureMove>() {
                 new ChaoticFailureMove(
@@ -110,5 +113,10 @@ namespace PlushieChaosSquad.Libraries
         /// </summary>
         /// <returns>A list containing all available chaotic failure moces.</returns>
         internal static List<ChaoticFailureMove> GetFailureMoves()=> failureMoves.ToList();
+
+        internal static ChaoticFailureMove GetRandomFailureMove()
+        {
+            return failureMoves[random.Next(failureMoves.Count)];
+        }
     }
 }
