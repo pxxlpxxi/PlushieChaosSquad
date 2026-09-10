@@ -14,7 +14,7 @@ namespace PlushieChaosSquad.Models.Squad
         internal int MaxChaosEnergy { get; }
         internal int ChaosEnergy { get; private set; }
         internal IReadOnlyList<SkillSet> ChaosSkills { get; }
-        internal bool IsAvailable { get; protected set; }
+        internal protected bool IsAvailable { get; protected set; }
 
         /// <summary>
         /// Creates a new Plushie.
