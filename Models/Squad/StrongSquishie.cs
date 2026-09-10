@@ -29,7 +29,6 @@ namespace PlushieChaosSquad.Models.Squad
         /// <returns>A tuple containing the availability status and a description of the strong squishie's current availability.</returns>
         internal override (bool,string) CheckAvailability()
         {
-            string unavailable = "";
             Random random = new Random();
             int roll = random.Next(1, 21);
 
