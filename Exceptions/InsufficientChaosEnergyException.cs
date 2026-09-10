@@ -4,7 +4,16 @@ using System.Text;
 
 namespace PlushieChaosSquad.Exceptions
 {
-    internal class InsufficientChaosEnergyException
+    /// <summary>
+    /// Thrown when a plushie does not have enough Chaos Energy to perform a chaos move
+    /// </summary>
+    internal class InsufficientChaosEnergyException: Exception
     {
+        /// <summary>
+        /// Creates a new insufficient Chaos Energy exception.
+        /// </summary>
+        internal InsufficientChaosEnergyException()
+        : base("There is no suitable plushie available for the assignment.")
+        { }
     }
 }
