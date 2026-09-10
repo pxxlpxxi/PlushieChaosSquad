@@ -1,4 +1,5 @@
-﻿using PlushieChaosSquad.Models.Moves;
+﻿using PlushieChaosSquad.Libraries;
+using PlushieChaosSquad.Models.Moves;
 
 namespace PlushieChaosSquad.Models.Squad
 {
@@ -13,7 +14,7 @@ namespace PlushieChaosSquad.Models.Squad
         internal int MaxChaosEnergy { get; }
         internal int ChaosEnergy { get; private set; }
         internal IReadOnlyList<SkillSet> ChaosSkills { get; }
-        internal bool IsAvailable { get; private set; }
+        internal bool IsAvailable { get; protected set; }
 
         /// <summary>
         /// Creates a new Plushie.
@@ -35,19 +36,30 @@ namespace PlushieChaosSquad.Models.Squad
             ChaosEnergy = maxChaosEnergy;
 
             IsAvailable = true;
-
         }
         /// <summary>
-        /// Performs a basic chaos move available to the plushie.
+        /// Performs a randomly selected basic chaos move available to the plushie.
         /// </summary>
         /// <returns>A description of the chaos caused.</returns>
-        internal abstract string MakeChaos();
+        internal ChaosMove MakeChaos()
+        {
+            List<ChaosMove> availableMoves = new List<ChaosMove>();
+
+            foreach (SkillSet skill in ChaosSkills)
+            {
+                availableMoves.AddRange(ChaosMoveLibrary.GetMovesForSkill(skill));
+            }
+
+            Random random = new Random();
+
+            return availableMoves[random.Next(availableMoves.Count)];
+        }
 
         /// <summary>
         /// Performs the plushie's signature chaos move.
         /// </summary>
         /// <returns>A description of the signature chaos caused.</returns>
-        internal abstract string PerformSignatureChaos();
+        internal string PerformSignatureChaos() => SignatureChaos;
 
         /// <summary>
         /// Marks the plushie as available for a new assignment.
@@ -82,6 +94,7 @@ namespace PlushieChaosSquad.Models.Squad
 
             return $"{Name} has rested and its Chaos Energy is back to {MaxChaosEnergy}.";
         }
+        internal abstract (bool, string) CheckAvailability();
     }
 }
 

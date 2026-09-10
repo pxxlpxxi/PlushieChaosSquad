@@ -6,5 +6,6 @@ namespace PlushieChaosSquad.Interfaces
 {
     internal interface ISuperStrong
     {
+        string MoveHeavyObject();
     }
 }

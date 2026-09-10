@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlushieChaosSquad.Models.Squad
 {
-    internal class ChaosTeddy
+    internal class ChaosTeddy : Plushie
     {
     }
 }
