@@ -24,5 +24,31 @@ namespace PlushieChaosSquad.Helpers
             }
             return default!;
         }
+
+        /// <summary>
+        /// Finds the item with the highest score according to the specified scoring function.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the collection.</typeparam>
+        /// <param name="items">The collection to search.</param>
+        /// <param name="score">A function that calculates the score for each item.</param>
+        /// <returns>
+        /// The item with the highest score, or <c>default</c> if the collection is empty.
+        /// </returns>
+        internal static T FindBest<T>(
+            IEnumerable<T> items,
+            Func<T, int> score)
+        {
+            T? bestItem = default;
+            int bestScore = int.MinValue;
+            foreach (T item in items) { 
+                int currentScore = score(item);
+                if (currentScore > bestScore)
+                {
+                    bestScore= currentScore;
+                    bestItem = item;
+                }
+            }
+            return bestItem!;
+        }
     }
 }
