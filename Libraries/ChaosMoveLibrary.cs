@@ -1,4 +1,5 @@
-﻿using PlushieChaosSquad.Models.Moves;
+﻿using PlushieChaosSquad.Exceptions;
+using PlushieChaosSquad.Models.Moves;
 
 namespace PlushieChaosSquad.Libraries
 {
@@ -224,6 +225,12 @@ namespace PlushieChaosSquad.Libraries
         }
         internal static ChaosMove GetRandomChaosMove(List<SkillSet> skills)
         {
+            List<ChaosMove> availableMoves= chaosMoves
+                .Where(move => skills.Contains(move.SkillSet))
+                .ToList();
+
+            if (availableMoves.Any()) throw new NoSuitablePlushieException();
+
             return chaosMoves[random.Next(chaosMoves.Count)];
         }
     }

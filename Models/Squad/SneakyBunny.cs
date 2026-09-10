@@ -37,7 +37,10 @@ namespace PlushieChaosSquad.Models.Squad
             IsAvailable = true;
             return (IsAvailable, $"{Name} is available.");
         }
-
+        internal override string PerformSignatureChaos() //Polymorfi
+        {
+            return $"Wow! A Sneaky Bunny just used its Signature Move! {Name} " + SignatureChaos;
+        }
 
         /// <summary>
         /// Allows the plushie to climb.

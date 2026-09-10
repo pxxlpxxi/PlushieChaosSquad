@@ -45,7 +45,7 @@ namespace PlushieChaosSquad.Models.Squad
         /// Performs the plushie's signature chaos move.
         /// </summary>
         /// <returns>A description of the signature chaos caused.</returns>
-        internal string PerformSignatureChaos() => SignatureChaos;
+        internal virtual string PerformSignatureChaos() => SignatureChaos; //Polymorfi
 
         /// <summary>
         /// Marks the plushie as available for a new assignment.
@@ -87,7 +87,7 @@ namespace PlushieChaosSquad.Models.Squad
         /// <returns>
         /// A tuple containing the plushie's availability status and a message describing its current state.
         /// </returns>
-        internal abstract (bool IsAvailable, string Message) CheckAvailability();
+        internal abstract (bool IsAvailable, string Message) CheckAvailability(int? test = 0); //abstract
 
         /// <summary>
         /// Selects a random basic chaos move from the plushie's available skills.
@@ -121,21 +121,3 @@ namespace PlushieChaosSquad.Models.Squad
         }
     }
 }
-
-///// <summary>
-///// Performs a randomly selected basic chaos move available to the plushie.
-///// </summary>
-///// <returns>A description of the chaos caused.</returns>
-//internal ChaosMove MakeChaos()
-//{
-//    List<ChaosMove> availableMoves = new List<ChaosMove>();
-
-//    foreach (SkillSet skill in ChaosSkills)
-//    {
-//        availableMoves.AddRange(ChaosMoveLibrary.GetMovesForSkill(skill));
-//    }
-
-//    Random random = new Random();
-
-//    return availableMoves[random.Next(availableMoves.Count)];
-//}

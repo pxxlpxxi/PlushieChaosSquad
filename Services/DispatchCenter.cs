@@ -5,6 +5,7 @@ using PlushieChaosSquad.Models.Incidents;
 using PlushieChaosSquad.Models.Moves;
 using PlushieChaosSquad.Models.Squad;
 using System.Diagnostics;
+using static System.Collections.Specialized.BitVector32;
 
 namespace PlushieChaosSquad.Services
 {
@@ -185,10 +186,12 @@ namespace PlushieChaosSquad.Services
             Plushie plushie,
             out bool handled)
         {
+            ChaosSession session= new ChaosSession();
             handled = true;
-
+                            
             string report =
                 $"{plushie.PerformSignatureChaos()}\n";
+            session.RegisterSignature(plushie);
 
             ChaosMove move = plushie.MakeChaos();
 
@@ -275,7 +278,6 @@ namespace PlushieChaosSquad.Services
             while (stillHasEnergy)
             {
                 stillHasEnergy = false;
-                string causeofExhaustion = "";
 
                 foreach (Plushie plushie in availablePlushies)
                 {
@@ -294,8 +296,7 @@ namespace PlushieChaosSquad.Services
                     {
                         result =
                             $"{plushie.Name} {move.Execute()}\n" +
-                            plushie.UseEnergy(move.EnergyCost, causeofExhaustion);
-                        causeofExhaustion = move.Name;
+                            plushie.UseEnergy(move.EnergyCost, move.Name);
 
                         session.RegisterMove(move);
                     }
@@ -303,14 +304,13 @@ namespace PlushieChaosSquad.Services
                     {
                         ChaoticFailureMove failureMove =
                             ChaoticFailureMoveLibrary.GetRandomFailureMove();
-                        causeofExhaustion = failureMove.Name;
 
                         result =
                             $"{plushie.Name} {DeclareIntent()} " +
                             $"{move.Intent.TrimEnd('.')}. {DeclareObjection()} " +
                             $"{move.Failure}\n" +
                             $"{failureMove.Execute()}\n" +
-                            plushie.UseEnergy(failureMove.EnergyCost, causeofExhaustion);
+                            plushie.UseEnergy(failureMove.EnergyCost, move.Name);
 
                     }
 

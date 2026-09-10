@@ -15,7 +15,7 @@ namespace PlushieChaosSquad.Libraries
             {
                 new ChaosTeddy(
                     "Sir Biscuits",
-                    "Sir Biscuits climbs onto the nearest piece of furniture and declares it a mountain for reasons known to no one.",
+                    "climbs onto the nearest piece of furniture and declares it a mountain for reasons known to no one.",
                     new List<SkillSet>
                     {
                         SkillSet.Slasher,
@@ -27,7 +27,7 @@ namespace PlushieChaosSquad.Libraries
 
                 new ChaosTeddy(
                     "Buttons",
-                    "Buttons picks up the fridge and relocates it to the front lawn. Several neighborhood pets observe while Buttons smugly reenters the house.",
+                    "picks up the fridge and relocates it to the front lawn. Several neighborhood pets observe while Buttons smugly reenters the house.",
                     new List<SkillSet>
                     {
                         SkillSet.Sneaky,
@@ -39,7 +39,7 @@ namespace PlushieChaosSquad.Libraries
 
                 new ChaosTeddy(
                     "Fluffers",
-                    "Fluffers charges heroically into a pile of laundry and refuses to explain why. Its unhinged giggle fits could be heard by the whole street.",
+                    "charges heroically into a pile of laundry and refuses to explain why. Its unhinged giggle fits could be heard by the whole street.",
                     new List<SkillSet>
                     {
                         SkillSet.Slasher,
@@ -50,7 +50,7 @@ namespace PlushieChaosSquad.Libraries
 
                 new ChaosTeddy(
                     "Countessa DeFluffula",
-                    "Countessa DeFluffula tears every decorative pillow in the living room open and leaves the stuffing arranged in what appears to be a deliberate pattern.",
+                    "tears every decorative pillow in the living room open and leaves the stuffing arranged in what appears to be a deliberate pattern.",
                     new List<SkillSet>
                     {
                         SkillSet.PillowArtist,
@@ -62,7 +62,7 @@ namespace PlushieChaosSquad.Libraries
 
                 new SneakyBunny(
                     "Mittens",
-                    "Mittens sneaks into a bedroom and tears a pillow to smithereens with its teeth. Feathers! Feathers everywhere!",
+                    "sneaks into a bedroom and tears a pillow to smithereens with its teeth. Feathers! Feathers everywhere!",
                     new List<SkillSet>
                     {
                         SkillSet.Slasher,
@@ -75,7 +75,7 @@ namespace PlushieChaosSquad.Libraries
                 new SneakyBunny
                 (
                     "Soup",
-                    "Soup waits until everyone is asleep before knocking a single object off every shelf in the house. It might have peed in a corner somewhere too.",
+                    "waits until everyone is asleep before knocking a single object off every shelf in the house. It might have peed in a corner somewhere too.",
                     new List<SkillSet>
                     {
                         SkillSet.DadDestroyer,
@@ -86,7 +86,7 @@ namespace PlushieChaosSquad.Libraries
                 ),
                 new SneakyBunny(
                     "Mr. Sniffles",
-                    "Mr. Sniffles tangles up all of Mom's Necklaces to one big knot, and then proceeds to hang her earrings from the chandelier.",
+                    "tangles up all of Mom's Necklaces to one big knot, and then proceeds to hang her earrings from the chandelier.",
                     new List<SkillSet>
                     {
                         SkillSet.MomsMenace,
@@ -97,7 +97,7 @@ namespace PlushieChaosSquad.Libraries
                 ),
                 new StrongSquishie(
                     "Dr. Octopus",
-                    "Dr. Octopus completely thrashes the pantry because one of the apples looked at him funny. Nobody is entirely sure which apple was responsible.",
+                    "completely thrashes the pantry because one of the apples looked at him funny. Nobody is entirely sure which apple was responsible.",
                     new List<SkillSet>
                     {
                         SkillSet.SnackBandit,
@@ -109,7 +109,7 @@ namespace PlushieChaosSquad.Libraries
 
                 new StrongSquishie(
                     "Doom Muffin",
-                    "Doom Muffin systematically knocks every picture frame off the wall because apparently none of them were hanging at the correct angle.",
+                    "systematically knocks every picture frame off the wall because apparently none of them were hanging at the correct angle.",
                     new List<SkillSet>
                     {
                         SkillSet.DadDestroyer,
@@ -121,7 +121,7 @@ namespace PlushieChaosSquad.Libraries
 
                 new StrongSquishie(
                     "Miss Pissy",
-                    "Miss Pissy flips Mom and Dad's bed and leans it vertically against the wardrobe, effectively blocking access to anything in there.",
+                    "flips Mom and Dad's bed and leans it vertically against the wardrobe, effectively blocking access to anything in there.",
                     new List<SkillSet>
                     {
                         SkillSet.SnackBandit,
@@ -133,7 +133,7 @@ namespace PlushieChaosSquad.Libraries
 
             new StrongSquishie(
                     "Lady Crumble",
-                    "Lady Crumble raids the pantry, crushes several perfectly good snacks in her fists, and leaves the crumbs scattered across the kitchen floor.",
+                    "raids the pantry, crushes several perfectly good snacks in her fists, and leaves the crumbs scattered across the kitchen floor.",
                     new List<SkillSet>
                     {
                         SkillSet.SnackBandit,
@@ -145,7 +145,7 @@ namespace PlushieChaosSquad.Libraries
             ),
             new ChaosTeddy(
                 "Lord Snuggleton",
-                "Lord Snuggleton drags Mom's freshly folded laundry through the garden, then carefully puts it back in the laundry basket.",
+                "drags Mom's freshly folded laundry through the garden, then carefully puts it back in the laundry basket.",
                 new List<SkillSet>
                 {
                     SkillSet.MomsMenace,

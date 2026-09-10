@@ -1,4 +1,5 @@
-﻿using PlushieChaosSquad.Interfaces;
+﻿using PlushieChaosSquad.Exceptions;
+using PlushieChaosSquad.Interfaces;
 using PlushieChaosSquad.Models.Moves;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace PlushieChaosSquad.Models.Squad
 
         int ISuperStrong.Strength => _strength;
 
-        internal ChaosTeddy(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100, int strength= 50)
+        internal ChaosTeddy(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100, int strength = 50)
         : base(name, signatureChaos, chaosSkills, maxChaosEnergy)
         {
             if (!chaosSkills.Contains(SkillSet.Sneaky)) chaosSkills.Add(SkillSet.Sneaky);
@@ -38,12 +39,13 @@ namespace PlushieChaosSquad.Models.Squad
         /// Checks whether the chaos teddy is available for chaos.
         /// </summary>
         /// <returns>A tuple containing the availability status and a description of the chaos teddy's current availability.</returns>
-        internal override (bool, string) CheckAvailability()
+        internal override (bool, string) CheckAvailability(int? test = 0)
         {
             Random random = new Random();
             int roll = random.Next(1, 21);
+            if (test == 16) roll = (int)test;
 
-            if (roll == 1)
+                if (roll == 1)
             {
                 IsAvailable = false;
                 return (
@@ -60,13 +62,36 @@ namespace PlushieChaosSquad.Models.Squad
                     $"{Name} is currently moving heavy furniture around for reasons known only to itself."
                 );
             }
+            if (roll == 16){
+                IsAvailable = false;
+                if (IsAvailable == false)
+                {
+                    try
+                    {
+                        throw new PlushieUnavailableException();
 
-            IsAvailable = true;
+                    }
+                    catch (PlushieUnavailableException e)
+                    {
+                        Console.WriteLine(e.ToString());
+                    }
+                    finally {
+                        Console.WriteLine($"{Name} is unavailable. Nobody knows why.\n");
+                      
+                    }
+                }
 
-            return (
-                IsAvailable,
-                $"{Name} is available and ready to unleash some chaos."
-            );
+            }
+                IsAvailable = true;
+
+                return (
+                    IsAvailable,
+                    $"{Name} is available and ready to unleash some chaos."
+                );
+            }
+        internal override string PerformSignatureChaos() //Polymorfi
+        {
+            return $"DID YOU SEE THAT?! A Chaos Teddy just used its signature move! {Name} " + SignatureChaos;
         }
     }
 }

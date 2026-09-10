@@ -50,18 +50,3 @@ namespace PlushieChaosSquad.Helpers
     }
 }
 
-
-//using System;
-//using System.Collections.Generic;
-//using System.Text;
-
-//namespace PlushieChaosSquad.Helpers
-//{
-//    internal static class UIReport
-//    {
-//        internal static void WriteReport(string report) 
-//        {
-//            Console.WriteLine(report);
-//        }
-//    }
-//}

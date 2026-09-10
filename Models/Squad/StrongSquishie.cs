@@ -56,6 +56,10 @@ namespace PlushieChaosSquad.Models.Squad
             IsAvailable = true;
             return (IsAvailable, $"{Name} is available and ready to cause some serious chaos.");
         }
+        internal override string PerformSignatureChaos() //Polymorfi
+        {
+            return $"Holy Mackarel! A Strong Squishie just used its signature move! {Name} " + SignatureChaos;
+        }
 
     }
 }

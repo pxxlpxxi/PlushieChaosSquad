@@ -13,7 +13,7 @@ namespace PlushieChaosSquad.Exceptions
         /// Creates a new insufficient Chaos Energy exception.
         /// </summary>
         internal InsufficientChaosEnergyException()
-        : base("There is no suitable plushie available for the assignment.")
+        : base("The plushie does not have enough Chaos Energy.")
         { }
     }
 }

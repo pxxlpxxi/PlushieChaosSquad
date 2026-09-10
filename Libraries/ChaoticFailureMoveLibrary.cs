@@ -77,7 +77,7 @@ namespace PlushieChaosSquad.Libraries
                     5),
                 new ChaoticFailureMove(
                     "Tiny Villain Monologue",
-                    "The plushie climbs onto the nearest piece of furniture and delivers an angry villain monologue to absolutely no one.", +
+                    "The plushie climbs onto the nearest piece of furniture and delivers an angry villain monologue to absolutely no one.",
                     20
                     ),
                 new ChaoticFailureMove(
