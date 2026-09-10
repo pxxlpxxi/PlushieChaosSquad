@@ -4,7 +4,17 @@ using System.Text;
 
 namespace PlushieChaosSquad.Models.Moves
 {
-    internal class SkillSet
+    /// <summary>
+    /// Represents the different categories of chaos skills a plushie can have.
+    /// </summary>
+    internal enum SkillSet
     {
+        MomsMenace,
+        DadDestroyer,
+        PillowArtist,
+        Slasher,
+        Sneaky,
+        FurnitureFury,
+        SnackBandit
     }
 }
