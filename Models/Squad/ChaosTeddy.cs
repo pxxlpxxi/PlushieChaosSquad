@@ -25,7 +25,7 @@ namespace PlushieChaosSquad.Models.Squad
         /// </summary>
         /// <returns>A description of the climbing action.</returns>
         string IClimbable.ClimbToHighPlace()
-            => $"{Name} climbs to a completely unreasonable height.";
+            => $"{Name} climbs to a completely unreasonable height for no apparent reason.";
 
         /// <summary>
         /// Allows the chaos teddy to use its super strength.

@@ -43,6 +43,6 @@ namespace PlushieChaosSquad.Models.Squad
         /// Allows the plushie to climb.
         /// </summary>
         /// <returns>A description of the climbing action.</returns>        
-        string IClimbable.ClimbToHighPlace()=> $"{Name} climbs to a high place.";
+        string IClimbable.ClimbToHighPlace()=> $"{Name} climbs to a high place to admire its secret stash of plundered snacks.";
     }
 }
