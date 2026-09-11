@@ -1,10 +1,6 @@
 ﻿using PlushieChaosSquad.Exceptions;
 using PlushieChaosSquad.Interfaces;
 using PlushieChaosSquad.Models.Moves;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml;
 
 namespace PlushieChaosSquad.Models.Squad
 {

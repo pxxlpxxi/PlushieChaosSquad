@@ -1,8 +1,5 @@
 ﻿using PlushieChaosSquad.Interfaces;
 using PlushieChaosSquad.Models.Moves;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PlushieChaosSquad.Models.Squad
 {

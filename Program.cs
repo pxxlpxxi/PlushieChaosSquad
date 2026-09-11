@@ -1,19 +1,14 @@
 ﻿using PlushieChaosSquad.Helpers;
 using PlushieChaosSquad.Interfaces;
 using PlushieChaosSquad.Models.Incidents;
-using PlushieChaosSquad.Models.Moves;
-using PlushieChaosSquad.Models.Squad;
 using PlushieChaosSquad.Services;
 using PlushieChaosSquad.Strategies;
-
-
 
 DispatchCenter dispatchCenter = new DispatchCenter();
 
 ChaosIncident lowIncident = new ChaosIncident(
     "Mom's perfume has mysteriously disappeared.",
     ChaosLevel.Low);
-
 ChaosIncident lowIncident2 =new ChaosIncident(
     "Mom's perfume has mysteriously disappeared.",
     ChaosLevel.Low);
@@ -21,7 +16,6 @@ ChaosIncident lowIncident2 =new ChaosIncident(
 ChaosIncident mediumIncident = new ChaosIncident(
     "Dad's entire toolbox has been rearranged.",
     ChaosLevel.Medium);
-
 ChaosIncident mediumIncident2 = new ChaosIncident(
     "Dad's entire toolbox has been rearranged.",
     ChaosLevel.Medium);
@@ -29,7 +23,6 @@ ChaosIncident mediumIncident2 = new ChaosIncident(
 ChaosIncident highIncident = new ChaosIncident(
     "The living room has become a complete disaster.",
     ChaosLevel.High);
-
 ChaosIncident highIncident2 = new ChaosIncident(
     "The living room has become a complete disaster.",
     ChaosLevel.High);
@@ -75,7 +68,6 @@ string mediumReport = dispatchCenter.HandleIncident(
         mediumIncident,
         strategy,
         incident => incident.MarkAsResolved());
-
 UIReport.WriteReport(
     "MEDIUM LEVEL INCIDENT - FIRST AVAILABLE STRATEGY",
     mediumReport,

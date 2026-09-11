@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlushieChaosSquad.Helpers
+﻿namespace PlushieChaosSquad.Helpers
 {
     /// <summary>
     /// Provides generic helper methods for searching collections

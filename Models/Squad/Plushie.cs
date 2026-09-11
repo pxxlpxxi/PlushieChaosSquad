@@ -1,6 +1,5 @@
 ﻿using PlushieChaosSquad.Helpers;
 using PlushieChaosSquad.Libraries;
-using PlushieChaosSquad.Models.Incidents;
 using PlushieChaosSquad.Models.Moves;
 
 namespace PlushieChaosSquad.Models.Squad

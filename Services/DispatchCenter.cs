@@ -5,7 +5,6 @@ using PlushieChaosSquad.Models.Incidents;
 using PlushieChaosSquad.Models.Moves;
 using PlushieChaosSquad.Models.Squad;
 using System.Diagnostics;
-using static System.Collections.Specialized.BitVector32;
 
 namespace PlushieChaosSquad.Services
 {

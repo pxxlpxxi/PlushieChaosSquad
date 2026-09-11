@@ -1,7 +1,6 @@
 ﻿using PlushieChaosSquad.Models.Moves;
 using PlushieChaosSquad.Models.Squad;
 
-
 namespace PlushieChaosSquad.Models.Incidents
 {
     /// <summary>

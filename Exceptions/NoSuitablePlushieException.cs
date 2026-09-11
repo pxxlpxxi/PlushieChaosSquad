@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlushieChaosSquad.Exceptions
+﻿namespace PlushieChaosSquad.Exceptions
 {
     /// <summary>
     /// Thrown when no suitable plushie can be found for an assignment.
