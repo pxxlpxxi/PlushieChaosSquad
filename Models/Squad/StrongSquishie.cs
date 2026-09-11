@@ -9,7 +9,7 @@ namespace PlushieChaosSquad.Models.Squad
 
         int ISuperStrong.Strength => _strength;
 
-        internal StrongSquishie(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100, int strength=70)
+        internal StrongSquishie(string name, string signatureChaos, List<SkillSet> chaosSkills, int maxChaosEnergy = 100, int strength = 70)
             : base(name, signatureChaos, chaosSkills, maxChaosEnergy)
         {
             if (!chaosSkills.Contains(SkillSet.FurnitureFury))
@@ -37,7 +37,7 @@ namespace PlushieChaosSquad.Models.Squad
             {
                 IsAvailable = false;
                 return (
-                    IsAvailable, 
+                    IsAvailable,
                     $"{Name} is currently at the gym, lifting unreasonably heavy things, even for a strong squishie.");
             }
 
@@ -45,7 +45,7 @@ namespace PlushieChaosSquad.Models.Squad
             {
                 IsAvailable = false;
                 return (
-                    IsAvailable, 
+                    IsAvailable,
                     $"{Name} is raiding the kitchen for protein shakes and refuses to leave until every last one is gone.");
 
             }
@@ -55,9 +55,9 @@ namespace PlushieChaosSquad.Models.Squad
         }
         internal override string PerformSignatureChaos() //Polymorfi
         {
-            return $"Holy Mackarel! A Strong Squishie just used its signature move! {Name} " + SignatureChaos;
+            return $"Holy Mackarel! Watch as Strong Squishie uses its Signature Move: {Name} " + SignatureChaos + "\n";
         }
 
-        
+
     }
 }

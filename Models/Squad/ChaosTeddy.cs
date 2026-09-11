@@ -41,7 +41,7 @@ namespace PlushieChaosSquad.Models.Squad
             int roll = random.Next(1, 21);
             if (test == 16) roll = (int)test;
 
-                if (roll == 1)
+            if (roll == 1)
             {
                 IsAvailable = false;
                 return (
@@ -58,7 +58,8 @@ namespace PlushieChaosSquad.Models.Squad
                     $"{Name} is currently moving heavy furniture around for reasons known only to itself."
                 );
             }
-            if (roll == 16){
+            if (roll == 16)
+            {
                 IsAvailable = false;
                 if (IsAvailable == false)
                 {
@@ -71,23 +72,24 @@ namespace PlushieChaosSquad.Models.Squad
                     {
                         Console.WriteLine(e.ToString());
                     }
-                    finally {
+                    finally
+                    {
                         Console.WriteLine($"{Name} is unavailable. Nobody knows why.\n");
-                      
+
                     }
                 }
 
             }
-                IsAvailable = true;
+            IsAvailable = true;
 
-                return (
-                    IsAvailable,
-                    $"{Name} is available and ready to unleash some chaos."
-                );
-            }
+            return (
+                IsAvailable,
+                $"{Name} is available and ready to unleash some chaos."
+            );
+        }
         internal override string PerformSignatureChaos() //Polymorfi
         {
-            return $"DID YOU SEE THAT?! A Chaos Teddy just used its signature move! {Name} " + SignatureChaos;
+            return $"ARE YOU SEEING THIS?! A Chaos Teddy is performing its Signature Move: {Name} " + SignatureChaos + "\n";
         }
     }
 }

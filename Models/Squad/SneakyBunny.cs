@@ -39,7 +39,7 @@ namespace PlushieChaosSquad.Models.Squad
         }
         internal override string PerformSignatureChaos() //Polymorfi
         {
-            return $"Wow! A Sneaky Bunny just used its Signature Move! {Name} " + SignatureChaos;
+            return $"Wow! A Sneaky Bunny is about to use its Signature Move: {Name} " + SignatureChaos+ "\n";
         }
 
         /// <summary>
