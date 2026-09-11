@@ -237,7 +237,8 @@ namespace PlushieChaosSquad.Libraries
             catch (NoSuitableChaosMoveException e)
             {
                 Console.WriteLine(e + "Fret not - the chosen Chaos Move might be difficult to perform " +
-                    "but there's no limit to what plushies accomplish if they set their mind to it.");
+                    "as the plushie has never before managed to nail it " +
+                    "but is there really any limit to what a plushie can accomplish?");
                 availableMoves = chaosMoves;
             }
 
