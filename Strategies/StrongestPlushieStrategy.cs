@@ -23,21 +23,34 @@ namespace PlushieChaosSquad.Strategies
         /// <exception cref="NoSuitablePlushieException"> Thrown when the incident or plushie collection is null, or when no plushie meets the requirements of the strategy.</exception>
         Plushie IDispatchStrategy.SelectPlushie(ChaosIncident incident, List<Plushie> plushies)
         {
-            if (incident == null) throw new NoSuitablePlushieException();
-            if (plushies == null) throw new NoSuitablePlushieException();
+            try
+            {
+                if (incident == null) throw new NoSuitablePlushieException();
+                if (plushies == null) throw new NoSuitablePlushieException();
+            }
+            catch (NoSuitablePlushieException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             List<Plushie> strongPlushies = plushies
                 .Where(plushie =>
                 plushie is ISuperStrong
                 && plushie.ChaosEnergy >= (int)incident.ChaosLevel)
                 .ToList();
-
-            if (!strongPlushies.Any()) throw new NoSuitablePlushieException();
+            try{
+                if (!strongPlushies.Any()) throw new NoSuitablePlushieException();
+            }
+              catch (NoSuitablePlushieException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
 
             return SelectAndRunRandomStrategyApproach(strongPlushies);
         }
 
-        private Plushie SelectAndRunRandomStrategyApproach(List<Plushie> plushies) {
+        private Plushie SelectAndRunRandomStrategyApproach(List<Plushie> plushies)
+        {
             Random random = new Random();
 
             if (random.Next(2) == 0)

@@ -139,7 +139,7 @@ namespace PlushieChaosSquad.Libraries
                 "Mystery Footprints",
                 intent: "leave a trail of mysterious plushie footprints through the house.",
                 success: "left a trail of mysterious plushie footprints through the house.",
-                failure: "there was already a suspicious trail of footprints, and the plushie did not want to become a suspect in its own investigation.",                
+                failure: "there was already a suspicious trail of footprints, and the plushie did not want to become a suspect in its own investigation.",
                 SkillSet.Sneaky),
             new ChaosMove(
                 "Gaslight Zone",
@@ -225,13 +225,23 @@ namespace PlushieChaosSquad.Libraries
         }
         internal static ChaosMove GetRandomChaosMove(List<SkillSet> skills)
         {
-            List<ChaosMove> availableMoves= chaosMoves
-                .Where(move => skills.Contains(move.SkillSet))
-                .ToList();
+            List<ChaosMove> availableMoves= new List<ChaosMove>();
+            try
+            {
+                availableMoves = chaosMoves
+                    .Where(move => skills.Contains(move.SkillSet))
+                    .ToList();
 
-            if (!availableMoves.Any()) throw new NoSuitablePlushieException();
+                if (!availableMoves.Any()) throw new NoSuitableChaosMoveException();
+            }
+            catch (NoSuitableChaosMoveException e)
+            {
+                Console.WriteLine(e + "Fret not - the chosen Chaos Move might be difficult to perform " +
+                    "but there's no limit to what plushies accomplish if they set their mind to it.");
+                availableMoves = chaosMoves;
+            }
 
-            return chaosMoves[random.Next(chaosMoves.Count)];
+            return availableMoves[random.Next(availableMoves.Count)];
         }
     }
 }

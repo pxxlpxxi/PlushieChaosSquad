@@ -16,7 +16,6 @@ namespace PlushieChaosSquad.Services
         private readonly List<Plushie> _plushies = PlushieLibrary.GetAllPlushies();
         private readonly List<ChaosIncident> _incidents = new List<ChaosIncident>();
 
-
         /// <summary>
         /// Registers a plushie with the dispatch center.
         /// </summary>
@@ -26,8 +25,6 @@ namespace PlushieChaosSquad.Services
             if (plushie == null) return;
             _plushies.Add(plushie);
         }
-
-
 
         /// <summary>
         /// Adds a chaos incident to the dispatch center.
@@ -58,7 +55,6 @@ namespace PlushieChaosSquad.Services
                 return plushie;
             }
         }
-
 
         /// <summary>
         /// Resolves a chaos incident using the specified action.
@@ -177,7 +173,6 @@ namespace PlushieChaosSquad.Services
                     move,
                     session);
             }
-
             return report;
         }
 
@@ -185,9 +180,9 @@ namespace PlushieChaosSquad.Services
             Plushie plushie,
             out bool handled)
         {
-            ChaosSession session= new ChaosSession();
+            ChaosSession session = new ChaosSession();
             handled = true;
-                            
+
             string report =
                 $"{plushie.PerformSignatureChaos()}\n";
             session.RegisterSignature(plushie);
@@ -310,7 +305,6 @@ namespace PlushieChaosSquad.Services
                             $"{move.Failure}\n" +
                             $"{failureMove.Execute()}\n" +
                             plushie.UseEnergy(failureMove.EnergyCost, move.Name);
-
                     }
 
                     Console.WriteLine(result.Trim());
@@ -319,8 +313,6 @@ namespace PlushieChaosSquad.Services
                     await Task.Delay(400);
                 }
             }
-
-
         }
         private readonly Random random = new Random();
         private string DeclareObjection()

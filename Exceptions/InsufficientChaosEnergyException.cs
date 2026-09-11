@@ -1,15 +1,15 @@
 ﻿namespace PlushieChaosSquad.Exceptions
 {
     /// <summary>
-    /// Thrown when a plushie does not have enough Chaos Energy to perform a chaos move
+    /// Thrown when unable to select a suitable Chaos Move
     /// </summary>
-    internal class InsufficientChaosEnergyException: Exception
+    internal class NoSuitableChaosMoveException : Exception
     {
         /// <summary>
-        /// Creates a new insufficient Chaos Energy exception.
+        /// Creates a new no suitable Chaos Move exception.
         /// </summary>
-        internal InsufficientChaosEnergyException()
-        : base("The plushie does not have enough Chaos Energy.")
+        internal NoSuitableChaosMoveException()
+        : base("Couldn't find a suitable Chaos Move.")
         { }
     }
 }
