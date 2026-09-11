@@ -61,24 +61,21 @@ namespace PlushieChaosSquad.Models.Squad
             if (roll == 16)
             {
                 IsAvailable = false;
-                if (IsAvailable == false)
+                if (IsAvailable)
                 {
                     try
                     {
+                        IsAvailable = false;
                         throw new PlushieUnavailableException();
 
                     }
                     catch (PlushieUnavailableException e)
                     {
-                        Console.WriteLine(e.ToString());
+                        Console.WriteLine(e.ToString() + "Nobody knows why.\n");
                     }
-                    finally
-                    {
-                        Console.WriteLine($"{Name} is unavailable. Nobody knows why.\n");
-
-                    }
+                  
                 }
-
+                return (IsAvailable, $"We couldn't find {Name} anywhere. We don't know what to tell you.\n");
             }
             IsAvailable = true;
 
