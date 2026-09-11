@@ -218,7 +218,7 @@ namespace PlushieChaosSquad.Services
                 handled = false;
 
                 return
-                    $"{plushie.Name} was supposed to {move.Intent} But {message}\n";
+                    $"{plushie.Name} {DeclareIntent()} {move.Intent} {DeclareObjection()} {message}\n";
             }
 
             handled = true;
@@ -243,8 +243,8 @@ namespace PlushieChaosSquad.Services
             }
 
             string failureReport =
-                $"{plushie.Name} was supposed to {move.Intent}, " +
-                $"{move.Failure}\n";
+                $"{plushie.Name} {DeclareObjection()} {move.Intent}. " +
+                $"{DeclareObjection()} {move.Failure}\n";
 
             ChaoticFailureMove failureMove =
                 ChaoticFailureMoveLibrary.GetRandomFailureMove();
@@ -310,13 +310,15 @@ namespace PlushieChaosSquad.Services
                     Console.WriteLine(result.Trim());
                     Console.WriteLine();
 
-                    await Task.Delay(400);
+                    await Task.Delay(800);
                 }
             }
         }
-        private readonly Random random = new Random();
+        //private readonly Random random = new Random();
         private string DeclareObjection()
         {
+        Random random = new Random();
+
             return objections[random.Next(objections.Length)];
         }
         private string[] objections = [
@@ -330,6 +332,8 @@ namespace PlushieChaosSquad.Services
             "Seemingly,"];
         private string DeclareIntent()
         {
+        Random random = new Random();
+
             return preIntent[random.Next(preIntent.Length)];
 
         }
