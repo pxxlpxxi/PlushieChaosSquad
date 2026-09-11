@@ -229,7 +229,7 @@ namespace PlushieChaosSquad.Libraries
                 .Where(move => skills.Contains(move.SkillSet))
                 .ToList();
 
-            if (availableMoves.Any()) throw new NoSuitablePlushieException();
+            if (!availableMoves.Any()) throw new NoSuitablePlushieException();
 
             return chaosMoves[random.Next(chaosMoves.Count)];
         }

@@ -21,7 +21,7 @@ namespace PlushieChaosSquad.Models.Squad
         /// Checks whether the sneaky bunny is available for chaos.
         /// </summary>
         /// <returns>A tuple containing the availability status and a description of the sneaky bunny's current availability.</returns>
-        internal override (bool, string) CheckAvailability()
+        internal override (bool IsAvailable, string Message) CheckAvailability(int? test = 0)
         {
             string unavailable = $"{Name} has disappeared. The sneaky bunny is probably hiding somewhere in the house.";
 

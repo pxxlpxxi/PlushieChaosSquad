@@ -31,7 +31,7 @@ namespace PlushieChaosSquad.Models.Squad
         /// Checks whether the strong squishie is available for chaos.
         /// </summary>
         /// <returns>A tuple containing the availability status and a description of the strong squishie's current availability.</returns>
-        internal override (bool,string) CheckAvailability()
+        internal override (bool IsAvailable, string Message) CheckAvailability(int? test = 0)
         {
             Random random = new Random();
             int roll = random.Next(1, 21);
@@ -61,5 +61,6 @@ namespace PlushieChaosSquad.Models.Squad
             return $"Holy Mackarel! A Strong Squishie just used its signature move! {Name} " + SignatureChaos;
         }
 
+        
     }
 }
