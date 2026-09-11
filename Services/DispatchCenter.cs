@@ -257,7 +257,7 @@ namespace PlushieChaosSquad.Services
 
             return failureReport;
         }
-        internal async Task WreakHavoc()
+        internal async Task WreakHavocAsync()
         {
             List<Plushie> availablePlushies = _plushies
                 .Where(plushie => plushie.IsAvailable)
