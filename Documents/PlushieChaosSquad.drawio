@@ -1,6 +1,6 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="qijOdEHdLAbWq1U8vWvj">
-    <mxGraphModel dx="2278" dy="1579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1745" dy="1347" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -506,7 +506,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="LlAMP96UY1RQoaN6iW7l-203" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;rounded=1;fillColor=#FFEFF6;strokeColor=#000000;" value="ChaosMoveLibrary" vertex="1">
-          <mxGeometry height="138" width="390" x="640" y="299" as="geometry" />
+          <mxGeometry height="112" width="390" x="640" y="299" as="geometry" />
         </mxCell>
         <mxCell id="LlAMP96UY1RQoaN6iW7l-204" parent="LlAMP96UY1RQoaN6iW7l-203" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;- chaosMoves&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;List&amp;lt;ChaosMove&amp;gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="390" y="26" as="geometry" />
@@ -517,11 +517,8 @@
         <mxCell id="LlAMP96UY1RQoaN6iW7l-211" parent="LlAMP96UY1RQoaN6iW7l-203" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="~ GetMovesForSkill (SkillSet)&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;List&amp;lt;ChaosMove&amp;gt;" vertex="1">
           <mxGeometry height="26" width="390" y="60" as="geometry" />
         </mxCell>
-        <mxCell id="LlAMP96UY1RQoaN6iW7l-209" parent="LlAMP96UY1RQoaN6iW7l-203" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=#FFCE9F;" value="~ GetRandomChaosMove(List&amp;lt;ChaosMove&amp;gt;)&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ChaosMove&lt;/span&gt;" vertex="1">
+        <mxCell id="LlAMP96UY1RQoaN6iW7l-212" parent="LlAMP96UY1RQoaN6iW7l-203" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=none;" value="~ GetRandomChaosMove(List&amp;lt;Skillset&amp;gt;)&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;ChaosMove" vertex="1">
           <mxGeometry height="26" width="390" y="86" as="geometry" />
-        </mxCell>
-        <mxCell id="LlAMP96UY1RQoaN6iW7l-212" parent="LlAMP96UY1RQoaN6iW7l-203" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;labelBackgroundColor=#FFCE9F;" value="~ GetRandomFailureMove()&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;ChaoticFailureMove" vertex="1">
-          <mxGeometry height="26" width="390" y="112" as="geometry" />
         </mxCell>
         <mxCell id="LlAMP96UY1RQoaN6iW7l-214" edge="1" parent="1" source="LlAMP96UY1RQoaN6iW7l-212" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=open;endFill=0;" target="LlAMP96UY1RQoaN6iW7l-196">
           <mxGeometry relative="1" as="geometry">
@@ -591,8 +588,8 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="LlAMP96UY1RQoaN6iW7l-222" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;rounded=1;fillColor=#FFEFF6;strokeColor=#000000;" value="ChaosMoveLibrary" vertex="1">
-          <mxGeometry height="86" width="390" x="650" y="638" as="geometry" />
+        <mxCell id="LlAMP96UY1RQoaN6iW7l-222" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;rounded=1;fillColor=#FFEFF6;strokeColor=#000000;" value="ChaoticFailureMoveLibrary" vertex="1">
+          <mxGeometry height="112" width="390" x="650" y="638" as="geometry" />
         </mxCell>
         <mxCell id="LlAMP96UY1RQoaN6iW7l-223" parent="LlAMP96UY1RQoaN6iW7l-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&lt;div&gt;- failureMoves&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;List&amp;lt;ChaoticFailureMove&amp;gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="390" y="26" as="geometry" />
@@ -602,6 +599,9 @@
         </mxCell>
         <mxCell id="LlAMP96UY1RQoaN6iW7l-227" parent="LlAMP96UY1RQoaN6iW7l-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="~ GetFailureMoves()&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;L&lt;/span&gt;ist&amp;lt;ChaoticF&lt;/span&gt;ailureMove&amp;gt;" vertex="1">
           <mxGeometry height="26" width="390" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="LlAMP96UY1RQoaN6iW7l-242" parent="LlAMP96UY1RQoaN6iW7l-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="~ GetRandomFailureMove()&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;ChaoticF&lt;/span&gt;ailureMove" vertex="1">
+          <mxGeometry height="26" width="390" y="86" as="geometry" />
         </mxCell>
         <mxCell id="LlAMP96UY1RQoaN6iW7l-232" edge="1" parent="1" source="LlAMP96UY1RQoaN6iW7l-164" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;endArrow=diamond;endFill=1;" target="LlAMP96UY1RQoaN6iW7l-203">
           <mxGeometry relative="1" as="geometry">
