@@ -108,6 +108,6 @@ UIReport.WriteReport(
 
 Console.WriteLine();
 
-await dispatchCenter.WreakHavoc();
+await dispatchCenter.WreakHavocAsync();
 
 Console.ReadKey();
